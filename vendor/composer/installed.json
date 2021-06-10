@@ -1,0 +1,36 @@
+{
+    "packages": [
+        {
+            "name": "fuyuezhen/swostar",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../swostar",
+                "reference": "5ea4546890395ecbed0d26211398c22d0cbb481f"
+            },
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "swostar\\": "src"
+                },
+                "files": [
+                    "src/helper.php"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "fuyuezhen",
+                    "email": "976066889@qq.com"
+                }
+            ],
+            "transport-options": {
+                "relative": true
+            },
+            "install-path": "../fuyuezhen/swostar"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

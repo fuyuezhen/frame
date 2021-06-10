@@ -1,0 +1,50 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "0c8f1a745fcf18f0ad4dc667af3c6233",
+    "packages": [
+        {
+            "name": "fuyuezhen/swostar",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "../swostar",
+                "reference": "5ea4546890395ecbed0d26211398c22d0cbb481f"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "swostar\\": "src"
+                },
+                "files": [
+                    "src/helper.php"
+                ]
+            },
+            "authors": [
+                {
+                    "name": "fuyuezhen",
+                    "email": "976066889@qq.com"
+                }
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "fuyuezhen/swostar": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">7.0"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}

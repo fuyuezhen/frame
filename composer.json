@@ -1,0 +1,25 @@
+{
+    "name": "fuyuezhen/frame",
+    "type": "library",
+    "authors": [
+        {
+            "name": "fuyuezhen",
+            "email": "976066889@qq.com"
+        }
+    ],
+    "require": {
+        "php" : ">7.0",
+        "fuyuezhen/swostar": "dev-master"
+    },
+    "repositories": {
+        "fuyuezhen":{
+            "type": "path",
+            "url": "../swostar"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\":"app/"
+        }
+    }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+    index index WebSocket
+    <script>
+        let id = prompt('请输入 id ');
+        let data ;
+        $.ajaxSettings.async=false;
+        $.post('http://192.168.218.20:9500',
+            {
+                method:'login',
+                id:id
+            },function(msg){
+                data = msg;
+            }, "json"
+        );
+
+        console.log(data);
+
+        //创建一个webSocket 实例
+        var wsServer = `ws://${data.url}/index`;
+
+        // 这是websocket的传参方式
+        // var websocket  = new WebSocket(wsServer, [data.token]);
+        var websocket  = new WebSocket(wsServer);
+
+        websocket.onopen = function (evt) {
+            console.log("已连接到服务端.");
+            websocket.send("发送数据");
+        };
+
+        websocket.onclose = function (evt) {
+            console.log("已断开连接.");
+        };
+
+        websocket.onmessage = function (evt) {
+            console.log('收到服务端信息: ' + evt.data);
+            setTimeout(()=>{
+                websocket.close(); // 断开
+            }, 1000)
+        };
+
+        websocket.onerror = function (evt, e) {
+            console.log('错误信息: ' + evt.data);
+        };
+    </script>
+</body>
+</html>
