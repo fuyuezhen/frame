@@ -1,6 +1,7 @@
 {
     "name": "fuyuezhen/frame",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "fuyuezhen",
@@ -9,13 +10,6 @@
     ],
     "require": {
         "php" : ">7.0",
-        "fuyuezhen/swostar": "dev-master"
-    },
-    "repositories": {
-        "fuyuezhen":{
-            "type": "path",
-            "url": "../swostar"
-        }
     },
     "autoload": {
         "psr-4": {
