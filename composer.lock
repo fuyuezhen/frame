@@ -4,15 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0c8f1a745fcf18f0ad4dc667af3c6233",
+    "content-hash": "d7ee2ae022a113696caf551dfc05ebe5",
     "packages": [
         {
             "name": "fuyuezhen/swostar",
-            "version": "dev-master",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fuyuezhen/swostar.git",
+                "reference": "22d0fd72aa11a89aee7e036119a770bd51de4e8e"
+            },
             "dist": {
-                "type": "path",
-                "url": "../swostar",
-                "reference": "5ea4546890395ecbed0d26211398c22d0cbb481f"
+                "type": "zip",
+                "url": "https://api.github.com/repos/fuyuezhen/swostar/zipball/22d0fd72aa11a89aee7e036119a770bd51de4e8e",
+                "reference": "22d0fd72aa11a89aee7e036119a770bd51de4e8e",
+                "shasum": ""
             },
             "type": "library",
             "autoload": {
@@ -23,28 +29,32 @@
                     "src/helper.php"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "fuyuezhen",
                     "email": "976066889@qq.com"
                 }
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/fuyuezhen/swostar/issues",
+                "source": "https://github.com/fuyuezhen/swostar/tree/v1.0.1"
+            },
+            "time": "2021-06-10T10:50:38+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "fuyuezhen/swostar": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">7.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

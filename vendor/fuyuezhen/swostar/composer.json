@@ -1,5 +1,5 @@
 {
-    "name": "fuyuezhen/frame",
+    "name": "fuyuezhen/swostar",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -8,13 +8,11 @@
             "email": "976066889@qq.com"
         }
     ],
-    "require": {
-        "php" : ">7.0",
-        "fuyuezhen/swostar": "^1.0"
-    },
+    "require": {},
     "autoload": {
         "psr-4": {
-            "app\\":"app/"
-        }
+            "swostar\\":"src"
+        },
+        "files": ["src/helper.php"]
     }
 }
