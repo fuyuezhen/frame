@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '244c8312de838dc9bbbada59defb076bffeee2d5',
+        'reference' => 'aca7c7d54df465d0567d81f02bb935cf0f9a314e',
         'name' => 'fuyuezhen/frame',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '244c8312de838dc9bbbada59defb076bffeee2d5',
+            'reference' => 'aca7c7d54df465d0567d81f02bb935cf0f9a314e',
             'dev_requirement' => false,
         ),
         'fuyuezhen/swostar' => array(
