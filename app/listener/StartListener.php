@@ -41,7 +41,7 @@ class StartListener extends Listener
                 $data = [
                     'method'      => 'register',
                     'serviceName' => 'IM1',
-                    'ip'          => $this->host,
+                    'ip'          => $this->app->getHost(),
                     'port'        => $this->port
                 ];
                 $client->push(json_encode($data));
