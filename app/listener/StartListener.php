@@ -35,7 +35,7 @@ class StartListener extends Listener
         // 这里我们需要使用协程客户端来实现功能
         // 因为IM - Server 中启动swoole服务就会请求 Route 的服务，并进行注册。那么IM-Server相对于Route来说就是一个客户端，同时还要做间断性的发送信息，以保持连接。
         Coroutine::create(function(){
-            $client = new \Swoole\Coroutine\Http\Client("127.0.0.1", 9500);
+            $client = new \Swoole\Coroutine\Http\Client("192.168.218.30", 9000);
             $ret = $client->upgrade("/"); // 升级为 WebSocket 连接。
             if ($ret) {
                 $data = [
