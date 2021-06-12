@@ -99,7 +99,7 @@ class Application extends Container
             }
             $class = "\app\\listener\\" . explode(".", $file)[0];
             if (class_exists($class)) {
-                $listener = new $class;
+                $listener = new $class($this);
                 $event->register($listener->getName(), [$listener, 'handler']);
             }
         }
@@ -132,7 +132,25 @@ class Application extends Container
     {
         $this->basePath = \rtrim($path, '\/');
     }
-
+    /**
+     * 设置地址
+     *
+     * @param [type] $path
+     * @return void
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
+        return  $this;
+    }
+    /**
+     * 获取地址
+     * @return void
+     */
+    public function getHost()
+    {
+        return $this->host;
+    }
     /**
      * 获取根目录地址
      * @return void

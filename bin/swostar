@@ -1,4 +1,11 @@
 <?php
 require dirname(__DIR__) . "/vendor/autoload.php";
 
-(new \swostar\Application(dirname(__DIR__)))->run($argv);
+$host = "127.0.0.1";
+if(isset($argv[2]) && $string=strstr($argv[2],'extra-init=')) {
+    $arr = explode("=", $string);
+    if (isset($arr[1])) {
+        $host = explode(':', $arr[1])[1];
+    }
+}
+(new \swostar\Application(dirname(__DIR__)))->setHost($host)->run($argv);

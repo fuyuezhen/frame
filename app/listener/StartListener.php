@@ -16,9 +16,22 @@ class StartListener extends Listener
      */
     protected $name = "start";
 
+    protected $app;
+    
+    protected $port = "9000";
+
+    /**
+     * 初始化
+     *
+     * @param [type] $app
+     */
+    public function __construct($app) {
+        $this->app = $app;
+    }
+
     public function handler()
     {
-        info("服务注册：192.168.218.20:9000");
+        info("服务注册：" . $this->app->getHost() . ":" . $this->port);
         // 这里我们需要使用协程客户端来实现功能
         // 因为IM - Server 中启动swoole服务就会请求 Route 的服务，并进行注册。那么IM-Server相对于Route来说就是一个客户端，同时还要做间断性的发送信息，以保持连接。
         Coroutine::create(function(){
@@ -28,8 +41,8 @@ class StartListener extends Listener
                 $data = [
                     'method'      => 'register',
                     'serviceName' => 'IM1',
-                    'ip'          => '192.168.218.20',
-                    'port'        => 9000
+                    'ip'          => $this->host,
+                    'port'        => $this->port
                 ];
                 $client->push(json_encode($data));
                 // 心跳处理
