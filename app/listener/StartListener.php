@@ -37,7 +37,6 @@ class StartListener extends Listener
         Coroutine::create(function(){
             $client = new \Swoole\Coroutine\Http\Client("192.168.218.30", 9000);
             $ret = $client->upgrade("/"); // 升级为 WebSocket 连接。
-            var_dump($ret);
             if ($ret) {
                 $data = [
                     'method'      => 'register',
