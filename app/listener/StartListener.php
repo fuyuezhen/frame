@@ -16,33 +16,22 @@ class StartListener extends Listener
      */
     protected $name = "start";
 
-    protected $app;
-    
-    protected $port = "9000";
-
-    /**
-     * 初始化
-     *
-     * @param [type] $app
-     */
-    public function __construct($app) {
-        $this->app = $app;
-    }
-
-    public function handler()
+    public function handler($swoStarServer = null)
     {
-        info("服务注册：" . $this->app->getHost() . ":" . $this->port);
+        $config = $this->app->make('config');
+
+        info("服务注册：" . $swoStarServer->getHost() . ":" . $swoStarServer->getPort());
         // 这里我们需要使用协程客户端来实现功能
         // 因为IM - Server 中启动swoole服务就会请求 Route 的服务，并进行注册。那么IM-Server相对于Route来说就是一个客户端，同时还要做间断性的发送信息，以保持连接。
-        Coroutine::create(function(){
-            $client = new \Swoole\Coroutine\Http\Client("192.168.218.30", 9000);
+        Coroutine::create(function() use($swoStarServer, $config){
+            $client = new \Swoole\Coroutine\Http\Client($config->get('server.route.server.host'), $config->get('server.route.server.port'));
             $ret = $client->upgrade("/"); // 升级为 WebSocket 连接。
             if ($ret) {
                 $data = [
                     'method'      => 'register',
                     'serviceName' => 'IM1',
-                    'ip'          => $this->app->getHost(),
-                    'port'        => $this->port
+                    'ip'          => $swoStarServer->getHost(),
+                    'port'        => $swoStarServer->getPort(),
                 ];
                 $client->push(json_encode($data));
                 // 心跳处理

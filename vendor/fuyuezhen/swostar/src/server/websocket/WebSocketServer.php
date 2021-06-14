@@ -45,10 +45,10 @@ class WebSocketServer extends HttpServer
      */
     protected function initSetting()
     {
-        $config     = app('config');
+        $config        = app('config');
         $this->tcpable = $config->get('server.ws.tcpable');
-        $this->host = $config->get('server.ws.host');
-        $this->port = $config->get('server.ws.port');
+        $this->host    = $this->app->getHost() ?: $config->get('server.ws.host');
+        $this->port    = $this->app->getPort() ?: $config->get('server.ws.port');
         $this->confing = $config->get('server.ws.swoole');
     }
 

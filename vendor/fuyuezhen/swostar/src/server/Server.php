@@ -2,6 +2,7 @@
 namespace swostar\server;
 
 use Swoole\Server as SwooleServer;
+use Redis;
 
 /**
  * 服务公共抽象父类
@@ -25,6 +26,12 @@ abstract class Server
      * @var string
      */
     protected $app = null;
+
+    /**
+     * redis对象实例
+     * @var string
+     */
+    protected $redis = null;
 
     /**
      * 监听地址
@@ -183,7 +190,9 @@ abstract class Server
      */
     public function onWorkerStart(SwooleServer $server, int $workerId)
     {
-
+        $config      = $this->app->make('config');
+        $this->redis = new Redis;
+        $this->redis->pconnect($config->get('database.redis.host'), $config->get('database.redis.port'));
     }
 
     /**
@@ -364,5 +373,52 @@ abstract class Server
     public function onAfterReload(SwooleServer $server)
     {
 
+    }
+
+    /**
+     * 设置地址
+     *
+     * @param [type] $host
+     * @return void
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
+        return  $this;
+    }
+    /**
+     * 获取地址
+     * @return void
+     */
+    public function getHost()
+    {
+        return $this->host;
+    }
+    /**
+     * 设置端口
+     *
+     * @param [type] $port
+     * @return void
+     */
+    public function setPort($port)
+    {
+        $this->port = $port;
+        return  $this;
+    }
+    /**
+     * 获取端口
+     * @return void
+     */
+    public function getPort()
+    {
+        return $this->port;
+    }
+    /**
+     * 获取redis对象实例
+     * @return void
+     */
+    public function getRedis()
+    {
+        return $this->redis;
     }
 }

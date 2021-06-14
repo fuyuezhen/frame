@@ -21,7 +21,7 @@ class Rpc
      */
     public function __construct(SwooleServer $server, $config) {
         $listen = $server->listen($config['host'], $config['port'], SWOOLE_SOCK_TCP);
-        $listen->set($config['swoole']);
+        $listen->set($config['swoole_setting']);
 
         $listen->on('connect', [$this, 'connect']);
         $listen->on('receive', [$this, 'receive']);

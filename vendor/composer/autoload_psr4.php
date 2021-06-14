@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'swostar\\' => array($vendorDir . '/fuyuezhen/swostar/src'),
     'app\\' => array($baseDir . '/app'),
+    'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
 );

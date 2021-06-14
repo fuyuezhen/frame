@@ -53,10 +53,10 @@ class HttpServer extends Server
      */
     protected function initSetting()
     {
-        $config     = app('config');
+        $config        = app('config');
         $this->tcpable = $config->get('server.http.tcpable');
-        $this->host = $config->get('server.http.host');
-        $this->port = $config->get('server.http.port');
+        $this->host    = $this->app->getHost() ?: $config->get('server.http.host');
+        $this->port    = $this->app->getPort() ?: $config->get('server.http.port');
         $this->confing = $config->get('server.http.swoole');
     }
 

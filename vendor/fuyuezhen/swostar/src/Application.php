@@ -28,6 +28,8 @@ class Application extends Container
      * @var string
      */
     protected $basePath = '';
+    protected $host = "";
+    protected $port = "";
 
     /**
      * 构造方法
@@ -135,7 +137,7 @@ class Application extends Container
     /**
      * 设置地址
      *
-     * @param [type] $path
+     * @param [type] $host
      * @return void
      */
     public function setHost($host)
@@ -150,6 +152,25 @@ class Application extends Container
     public function getHost()
     {
         return $this->host;
+    }
+    /**
+     * 设置端口
+     *
+     * @param [type] $port
+     * @return void
+     */
+    public function setPort($port)
+    {
+        $this->port = $port;
+        return  $this;
+    }
+    /**
+     * 获取端口
+     * @return void
+     */
+    public function getPort()
+    {
+        return $this->port;
     }
     /**
      * 获取根目录地址
