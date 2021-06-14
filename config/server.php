@@ -42,7 +42,7 @@ return [
         ],
         'jwt' => [
             'key' => 'swocloud',
-            'alg' => ['HS256']
+            'alg' => 'HS256'
         ]
     ]
 
