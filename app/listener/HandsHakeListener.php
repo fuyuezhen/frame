@@ -49,15 +49,15 @@ class HandsHakeListener extends Listener
      * 对连接的用户进行权限校验，如果通过就存入redis中
      *
      * @param WebSocketServer $server
-     * @param [type] $toekn
+     * @param [type] $token
      * @param [type] $fd
      * @return void
      */
-    protected function check(WebSocketServer $server, $toekn, $fd)
+    protected function check(WebSocketServer $server, $token, $fd)
     {
         try {
             $config = $this->app->make('config');
-            $key = $config->get("server.route.jwt.key");
+            $key    = $config->get("server.route.jwt.key");
             // 对jwt的token进行解析，返回jwt对象
             // 'data' => [
             //     'uid'  => $uid,
