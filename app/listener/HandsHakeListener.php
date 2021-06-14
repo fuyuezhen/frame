@@ -34,7 +34,7 @@ class HandsHakeListener extends Listener
         // 没有携带token直接结束
         $token = $request->header['sec-websocket-protocol'];
         info($token);
-        $response->end($token);
+        
         if (empty($token) || (!$this->check($server, $token, $request->fd))) {
             $response->end();
             return false;
@@ -73,7 +73,7 @@ class HandsHakeListener extends Listener
             //     'name'  => "client" . $time . $sid, // 用户名
             //     'service_url' => $url,
             // ],
-            $jwt = JWT::encode($token, $key, [$config->get('server.route.jwt.alg')]);
+            $jwt = JWT::encode($token, $key, $config->get('server.route.jwt.alg'));
 
 
             // 从jwt中获取信息
