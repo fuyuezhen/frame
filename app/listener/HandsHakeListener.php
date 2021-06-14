@@ -39,9 +39,9 @@ class HandsHakeListener extends Listener
             return false;
         }
         $response->end();
-            return false;
+            // return false;
         // websocket握手连接算法验证
-        $this->handShake($request, $response);
+        // $this->handShake($request, $response);
     }
 
     /**
