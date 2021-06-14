@@ -18,7 +18,7 @@ return [
         ]
     ],
     'ws' => [
-        'is_handshake' => false, // 是否自定义handshake 握手的过程
+        'is_handshake' => true, // 是否自定义handshake 握手的过程
         'host' => '0.0.0.0',
         'port' => 9000,
         'tcpable'     => 1,    // 是否开启tcp监听，1为开启，0为关闭
