@@ -57,16 +57,6 @@ class HandsHakeListener extends Listener
         try {
             $config = $this->app->make('config');
             $key    = $config->get("server.route.jwt.key");
-
-
-            
-            var_dump($config->get('server.route.jwt.key'));
-            var_dump($config->get('server.route.jwt.alg'));
-            info($token);
-            info($fd);
-            info($key);
-
-
             // 对jwt的token进行解析，返回jwt对象
             // 'data' => [
             //     'uid'  => $uid,
@@ -75,9 +65,9 @@ class HandsHakeListener extends Listener
             // ],
             $jwt = JWT::encode($token, $key, $config->get('server.route.jwt.alg'));
 
-
             // 从jwt中获取信息
             $userInfo = $jwt->data;
+            var_dump($jwt);
             var_dump($userInfo);
             // 然后绑定路由的关系
             $url = $userInfo->service_url;
