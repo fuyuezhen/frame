@@ -21,6 +21,7 @@ class StartListener extends Listener
         $config = $this->app->make('config');
 
         info("服务注册：" . $swoStarServer->getHost() . ":" . $swoStarServer->getPort());
+        info("路由地址：" . $config->get('server.route.server.host') . ":" . $config->get('server.route.server.port'));
         // 这里我们需要使用协程客户端来实现功能
         // 因为IM - Server 中启动swoole服务就会请求 Route 的服务，并进行注册。那么IM-Server相对于Route来说就是一个客户端，同时还要做间断性的发送信息，以保持连接。
         Coroutine::create(function() use($swoStarServer, $config){
