@@ -38,7 +38,7 @@ class WebSocketServer extends HttpServer
             'close'   => 'onClose',
         ];
 
-        $this->app->make('config')->get('server.ws.is_handshake') ?: $event['handshake'] = 'onHandShake';
+        (!$this->app->make('config')->get('server.ws.is_handshake')) ?: $event['handshake'] = 'onHandShake';
 
         $this->event['sub'] = $event;
     }
