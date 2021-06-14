@@ -62,7 +62,7 @@ class HandsHakeListener extends Listener
             //     'name'  => "client" . $time . $sid, // 用户名
             //     'service_url' => $url,
             // ],
-            $jwt = JWT::decode($token, $key, [$config->get('server.route.jwt.alg')]);
+            $jwt = JWT::decode($token, $key, $config->get('server.route.jwt.alg'));
             
             info($token);
             // 从jwt中获取信息
