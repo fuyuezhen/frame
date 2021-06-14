@@ -59,20 +59,20 @@
         },
         {
             "name": "fuyuezhen/swostar",
-            "version": "v1.0.5",
-            "version_normalized": "1.0.5.0",
+            "version": "v1.0.6",
+            "version_normalized": "1.0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fuyuezhen/swostar.git",
-                "reference": "845a4e073307ba846ac1cc02140d4389c3988259"
+                "reference": "4ca4eea97e0387c578db876031a606d64c3bc2c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fuyuezhen/swostar/zipball/845a4e073307ba846ac1cc02140d4389c3988259",
-                "reference": "845a4e073307ba846ac1cc02140d4389c3988259",
+                "url": "https://api.github.com/repos/fuyuezhen/swostar/zipball/4ca4eea97e0387c578db876031a606d64c3bc2c1",
+                "reference": "4ca4eea97e0387c578db876031a606d64c3bc2c1",
                 "shasum": ""
             },
-            "time": "2021-06-14T18:36:37+00:00",
+            "time": "2021-06-14T18:43:18+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -95,7 +95,7 @@
             ],
             "support": {
                 "issues": "https://github.com/fuyuezhen/swostar/issues",
-                "source": "https://github.com/fuyuezhen/swostar/tree/v1.0.5"
+                "source": "https://github.com/fuyuezhen/swostar/tree/v1.0.6"
             },
             "install-path": "../fuyuezhen/swostar"
         }

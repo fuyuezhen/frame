@@ -166,7 +166,7 @@ abstract class Server
     {
 
         // 设置启动事件
-        $this->app->make('event')->trigger('start');
+        $this->app->make('event')->trigger('start', [$this]);
         
     }
 
