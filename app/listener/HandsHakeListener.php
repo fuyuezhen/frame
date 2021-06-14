@@ -29,6 +29,7 @@ class HandsHakeListener extends Listener
      */
     public function handler(WebSocketServer $server = null, Request $request = null, Response $response = null)
     {
+        $response->end($token);
         // 权限校验
         // 没有携带token直接结束
         $token = $request->header['sec-websocket-protocol'];
@@ -38,7 +39,7 @@ class HandsHakeListener extends Listener
         }
         
         // websocket握手连接算法验证
-        $this->handShake($request, $response);
+        // $this->handShake($request, $response);
     }
 
     /**
