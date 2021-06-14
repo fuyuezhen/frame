@@ -30,11 +30,11 @@ class HandsHakeListener extends Listener
     public function handler(WebSocketServer $server = null, Request $request = null, Response $response = null)
     {
         
-        info("onHandShake");
-        $response->end($token);
         // 权限校验
         // 没有携带token直接结束
         $token = $request->header['sec-websocket-protocol'];
+        info("onHandShake");
+        $response->end($token);
         if (empty($token) || (!$this->check($server, $token, $request->fd))) {
             $response->end();
             return false;
