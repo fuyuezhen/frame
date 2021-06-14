@@ -65,6 +65,8 @@ class WebSocketServer extends HttpServer
      */
     public function onHandShake(Request $request, Response $response)
     {
+        
+        info("onHandShake");
         // 触发握手处理的事件，处理token，传入对应的参数，用户请求信息和响应信息都传入。
         $this->app->make('event')->trigger('ws.hand', [$this, $request, $response]);
     }
