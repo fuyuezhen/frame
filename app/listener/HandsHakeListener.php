@@ -33,7 +33,6 @@ class HandsHakeListener extends Listener
         // 权限校验
         // 没有携带token直接结束
         $token = $request->header['sec-websocket-protocol'];
-        info("onHandShake");
         info($token);
         $response->end($token);
         if (empty($token) || (!$this->check($server, $token, $request->fd))) {
@@ -58,6 +57,16 @@ class HandsHakeListener extends Listener
         try {
             $config = $this->app->make('config');
             $key    = $config->get("server.route.jwt.key");
+
+
+            
+            var_dump($config->get('server.route.jwt.key'));
+            var_dump($config->get('server.route.jwt.alg'));
+            info($token);
+            info($fd);
+            info($key);
+
+
             // 对jwt的token进行解析，返回jwt对象
             // 'data' => [
             //     'uid'  => $uid,
@@ -65,6 +74,8 @@ class HandsHakeListener extends Listener
             //     'service_url' => $url,
             // ],
             $jwt = JWT::encode($token, $key, [$config->get('server.route.jwt.alg')]);
+
+
             // 从jwt中获取信息
             $userInfo = $jwt->data;
             var_dump($userInfo);
