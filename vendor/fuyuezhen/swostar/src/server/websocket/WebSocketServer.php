@@ -72,6 +72,9 @@ class WebSocketServer extends HttpServer
     {
         // 触发握手处理的事件，处理token，传入对应的参数，用户请求信息和响应信息都传入。
         $this->app->make('event')->trigger('ws.hand', [$this, $swooleRequest, $swooleResponse]);
+
+        // 设置 onHandShake 回调函数后不会再触发 onOpen 事件，需要应用代码自行处理，所以在此处调用 onOpen 逻辑
+        $this->onOpen($this->swooleServer, $swooleRequest);
     }
 
     /**
@@ -82,8 +85,7 @@ class WebSocketServer extends HttpServer
      * @return void
      */
     public function onOpen(SwooleServer $server, $request) {
-        info("onOpen");
-        app("route")->setFlag('web_socket')->setMethod("open")->match($request->server['path_info'], [$server, $request]);
+        $this->controller("open", $request->server['path_info'], [$server, $request]);
         
         Connections::init($request->fd, $request->server['path_info']);
     }
@@ -96,8 +98,7 @@ class WebSocketServer extends HttpServer
      * @return void
      */
     public function onMessage(SwooleServer $server, $frame) {
-        info("onMessage");
-        app("route")->setFlag('web_socket')->setMethod("message")->match(Connections::get($frame->fd), [$server, $frame]);
+        $this->controller("message", (Connections::get($frame->fd)), [$server, $frame]);
     }
     
     /**
@@ -109,8 +110,23 @@ class WebSocketServer extends HttpServer
      */
     public function onClose($server, int $fd, int $reactorId) {
         info("onClose");
-        app("route")->setFlag('web_socket')->setMethod("close")->match(Connections::get($fd), [$server, $fd, $reactorId]);
-        Connections::del($fd);
+        if (!empty(Connections::get($fd))) {
+            $this->controller("close", (Connections::get($fd)), [$server, $fd, $reactorId]);
+            Connections::del($fd);
+        }
+    }
+
+    /**
+     * 分发大对应控制器执行事项
+     *
+     * @param [type] $method
+     * @param [type] $path
+     * @param [type] $param
+     * @return void
+     */
+    protected function controller($method, $path, $param)
+    {
+        app("route")->setFlag('web_socket')->setMethod($method)->match($path, $param);
     }
 
 }
