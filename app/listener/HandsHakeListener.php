@@ -38,6 +38,8 @@ class HandsHakeListener extends Listener
             $response->end();
             return false;
         }
+
+        $response->status(200);
         $response->end();
             // return false;
         // websocket握手连接算法验证
