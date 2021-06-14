@@ -35,6 +35,7 @@ class WebSocketServer extends HttpServer
             'open'    => 'onOpen',
             'message' => 'onMessage',
             'close'   => 'onClose',
+            'handshake'   => 'onHandShake',
         ];
     }
 
@@ -49,6 +50,22 @@ class WebSocketServer extends HttpServer
         $this->host = $config->get('server.ws.host');
         $this->port = $config->get('server.ws.port');
         $this->confing = $config->get('server.ws.swoole');
+    }
+
+    /**
+     * WebSocket 建立连接后进行握手。WebSocket 服务器会自动进行 handshake 握手的过程，如果用户希望自己进行握手处理，可以设置 onHandShake 事件回调函数。
+     * 注意：设置 onHandShake 回调函数后不会再触发 onOpen 事件，需要应用代码自行处理，可以使用 $server->defer 调用 onOpen 逻辑
+     * 
+     * 这里是自己定义进行握手的处理，来校验用户的token
+     * 
+     * @param Request $request
+     * @param Response $response
+     * @return void
+     */
+    public function onHandShake(Request $request, Response $response)
+    {
+        // 触发握手处理的事件，处理token，传入对应的参数，用户请求信息和响应信息都传入。
+        $this->app->make('event')->trigger('ws.hand', [$this, $request, $response]);
     }
 
     /**

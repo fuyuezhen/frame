@@ -28,8 +28,8 @@
         var wsServer = `ws://${data.url}/index`;
 
         // 这是websocket的传参方式
-        // var websocket  = new WebSocket(wsServer, [data.token]);
-        var websocket  = new WebSocket(wsServer);
+        var websocket  = new WebSocket(wsServer, [data.token]);
+        // var websocket  = new WebSocket(wsServer);
 
         websocket.onopen = function (evt) {
             console.log("已连接到服务端.");

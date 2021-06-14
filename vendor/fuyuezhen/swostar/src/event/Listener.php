@@ -14,7 +14,7 @@ abstract class Listener
     protected $name = "interface";
 
     /**
-     * 监听事件
+     * 事件处理程序的方法
      *
      * @return void
      */
