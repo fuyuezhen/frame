@@ -34,6 +34,7 @@ class HandsHakeListener extends Listener
         // 没有携带token直接结束
         $token = $request->header['sec-websocket-protocol'];
         info("onHandShake");
+        info($token);
         $response->end($token);
         if (empty($token) || (!$this->check($server, $token, $request->fd))) {
             $response->end();
