@@ -120,7 +120,7 @@ class Route
             return $this->runAction($action, $params);
         }
 
-        info("没有找到方法：".$action);
+        info("没有找到方法：".$path);
 
         return "404";
     }
