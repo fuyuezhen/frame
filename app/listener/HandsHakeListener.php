@@ -64,11 +64,8 @@ class HandsHakeListener extends Listener
             // ],
             $jwt = JWT::decode($token, $key, $config->get('server.route.jwt.alg'));
             
-            info($token);
             // 从jwt中获取信息
             $userInfo = $jwt->data;
-            var_dump($jwt);
-            var_dump($userInfo);
             // 然后绑定路由的关系
             $url = $userInfo->service_url;
             $server->getRedis()->hset($key, $userInfo->uid, \json_encode([
