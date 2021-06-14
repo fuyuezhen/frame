@@ -63,6 +63,7 @@ class HandsHakeListener extends Listener
             $jwt = JWT::encode($token, $key, [$config->get('server.route.jwt.alg')]);
             // 从jwt中获取信息
             $userInfo = $jwt->data;
+            var_dump($userInfo);
             // 然后绑定路由的关系
             $url = $userInfo->service_url;
             $server->getRedis()->hset($key, $userInfo->uid, \json_encode([
@@ -97,7 +98,7 @@ class HandsHakeListener extends Listener
             $response->end();
             return false;
         }
-        echo $request->header['sec-websocket-key'];
+        // echo $request->header['sec-websocket-key'];
         $key = base64_encode(
             sha1(
                 $request->header['sec-websocket-key'] . '258EAFA5-E914-47DA-95CA-C5AB0DC85B11',
