@@ -392,7 +392,8 @@ abstract class Server
      */
     public function getHost()
     {
-        return $this->host;
+        // return $this->host;
+        return $this->app->getHost();
     }
     /**
      * 设置端口
@@ -411,7 +412,8 @@ abstract class Server
      */
     public function getPort()
     {
-        return $this->port;
+        // return $this->port;
+        return $this->app->getPort();
     }
     /**
      * 获取redis对象实例

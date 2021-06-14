@@ -19,8 +19,8 @@ class WebSocketServer extends HttpServer
      * @return void
      */
     protected function createServer(){
-        // $this->swooleServer = new SwooleServer($this->host, $this->port);
-        $this->swooleServer = new SwooleServer("127.0.0.1", $this->port);
+        $this->swooleServer = new SwooleServer($this->host, $this->port);
+        // $this->swooleServer = new SwooleServer("127.0.0.1", $this->port);
 
         info("启动WebSocket监听：" . $this->host . ":" . $this->port);
     }
@@ -36,7 +36,7 @@ class WebSocketServer extends HttpServer
             'open'    => 'onOpen',
             'message' => 'onMessage',
             'close'   => 'onClose',
-            'handshake'   => 'onHandShake',
+            // 'handshake'   => 'onHandShake',
         ];
     }
 
@@ -48,8 +48,8 @@ class WebSocketServer extends HttpServer
     {
         $config        = app('config');
         $this->tcpable = $config->get('server.ws.tcpable');
-        $this->host    = $this->app->getHost() ?: $config->get('server.ws.host');
-        $this->port    = $this->app->getPort() ?: $config->get('server.ws.port');
+        $this->host    = $config->get('server.ws.host');
+        $this->port    = $config->get('server.ws.port');
         $this->confing = $config->get('server.ws.swoole');
     }
 

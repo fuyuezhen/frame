@@ -20,8 +20,8 @@ class HttpServer extends Server
      * @return void
      */
     protected function createServer(){
-        // $this->swooleServer = new SwooleServer($this->host, $this->port);
-        $this->swooleServer = new SwooleServer("127.0.0.1", $this->port);
+        $this->swooleServer = new SwooleServer($this->host, $this->port);
+        // $this->swooleServer = new SwooleServer("127.0.0.1", $this->port);
 
         info("启动HTTP监听：" . $this->host . ":" . $this->port);
     }
@@ -56,8 +56,8 @@ class HttpServer extends Server
     {
         $config        = app('config');
         $this->tcpable = $config->get('server.http.tcpable');
-        $this->host    = $this->app->getHost() ?: $config->get('server.http.host');
-        $this->port    = $this->app->getPort() ?: $config->get('server.http.port');
+        $this->host    = $config->get('server.http.host');
+        $this->port    = $config->get('server.http.port');
         $this->confing = $config->get('server.http.swoole');
     }
 

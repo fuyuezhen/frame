@@ -29,7 +29,7 @@ class Application extends Container
      */
     protected $basePath = '';
     protected $host = "";
-    protected $port = "";
+    protected $port = "9000";
 
     /**
      * 构造方法
