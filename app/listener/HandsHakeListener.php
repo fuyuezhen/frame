@@ -77,6 +77,7 @@ class HandsHakeListener extends Listener
             ]));
             return true;
         } catch (\Exception $e) {
+            info($e->getMessage());
             return false;
         }
     }
