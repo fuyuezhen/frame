@@ -95,6 +95,9 @@ class Route
      * @return void
      */
     public function match($path, $params = []){
+        if (empty($path) || $path == "/") {
+            $path = "/index";
+        }
         /*
         本质就是一个字符串的比对
         1. 获取请求的uripath

@@ -62,16 +62,16 @@
         },
         {
             "name": "fuyuezhen/swostar",
-            "version": "v1.0.24",
+            "version": "v1.0.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fuyuezhen/swostar.git",
-                "reference": "e75600a72e51be5e74114d92b54f1d1b45fcb714"
+                "reference": "7c657ba26c737ae5cf10a1590e37dadd158d01d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fuyuezhen/swostar/zipball/e75600a72e51be5e74114d92b54f1d1b45fcb714",
-                "reference": "e75600a72e51be5e74114d92b54f1d1b45fcb714",
+                "url": "https://api.github.com/repos/fuyuezhen/swostar/zipball/7c657ba26c737ae5cf10a1590e37dadd158d01d2",
+                "reference": "7c657ba26c737ae5cf10a1590e37dadd158d01d2",
                 "shasum": ""
             },
             "type": "library",
@@ -95,9 +95,9 @@
             ],
             "support": {
                 "issues": "https://github.com/fuyuezhen/swostar/issues",
-                "source": "https://github.com/fuyuezhen/swostar/tree/v1.0.24"
+                "source": "https://github.com/fuyuezhen/swostar/tree/v1.0.25"
             },
-            "time": "2021-06-15T04:31:29+00:00"
+            "time": "2021-06-15T05:54:30+00:00"
         }
     ],
     "packages-dev": [],

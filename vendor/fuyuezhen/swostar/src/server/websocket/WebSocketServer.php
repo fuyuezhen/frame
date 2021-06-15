@@ -22,7 +22,6 @@ class WebSocketServer extends HttpServer
         $this->swooleServer = new SwooleServer($this->host, $this->port);
         // $this->swooleServer = new SwooleServer("127.0.0.1", $this->port);
 
-
         info("启动WebSocket监听：" . $this->host . ":" . $this->port);
     }
 
@@ -101,11 +100,8 @@ class WebSocketServer extends HttpServer
     public function onMessage(SwooleServer $server, $frame) {
         // 消息回复事件
         $this->app->make('event')->trigger('ws.message.front', [$this, $server, $frame]);
-        $path = Connections::get($frame->fd)['path'];
-        if ($path=="/") {
-            $path = "/index";
-        }
-        $this->controller("message", $path, [$server, $frame]);
+        
+        $this->controller("message", (Connections::get($frame->fd)['path']), [$server, $frame]);
     }
     
     /**
@@ -149,7 +145,6 @@ class WebSocketServer extends HttpServer
     {
         \Swoole\Coroutine::sleep(1);// 此处延迟发送，等待route客户端关闭后在通知，否则有可能会push失败。
 
-        info("sendAll" . count($this->swooleServer->connections));
         // $connections 遍历所有websocket连接用户的fd，给所有用户推送
         foreach ($this->swooleServer->connections as $fd) {
             // 需要先判断是否是正确的websocket连接，否则有可能会push失败

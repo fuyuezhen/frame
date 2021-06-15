@@ -13,7 +13,7 @@ abstract class Server
      * 保存swoole对象
      * @var SwooleServer
      */
-    public $swooleServer;
+    protected $swooleServer;
 
     /**
      * RPC通信开关
