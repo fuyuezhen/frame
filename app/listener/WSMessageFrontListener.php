@@ -10,7 +10,7 @@ use Swoole\WebSocket\Server as SwooleServer;
 /**
  * 开始监听
  */
-class WSCloseListener extends Listener
+class WSMessageFrontListener extends Listener
 {
     /**
      * 事件名称
