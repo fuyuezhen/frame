@@ -145,7 +145,7 @@ class WebSocketServer extends HttpServer
     {
         \Swoole\Coroutine::sleep(1);// 此处延迟发送，等待route客户端关闭后在通知，否则有可能会push失败。
 
-        info("当前服务器共有 " . count($server->connections) . " 个连接\n");
+        info("当前服务器共有 " . count($this->swooleServer->connections) . " 个连接\n");
 
         // $connections 遍历所有websocket连接用户的fd，给所有用户推送
         foreach ($this->swooleServer->connections as $fd) {
