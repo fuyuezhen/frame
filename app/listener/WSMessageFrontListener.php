@@ -82,6 +82,7 @@ class WSMessageFrontListener extends Listener
             ];
             $client->push(json_encode($data));
         }
+        $client->close();
     }
     
     /**
