@@ -148,7 +148,7 @@ class WebSocketServer extends HttpServer
      */
     public function sendAll($msg)
     {
-        var_dump($this->swooleServer->connections);
+        echo "当前服务器共有 " . count($this->swooleServer->connections) . " 个连接\n";
         foreach ($this->swooleServer->connections as $fd) {
             if ($this->swooleServer->exists($fd)) {
                 var_dump($fd);
