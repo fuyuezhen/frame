@@ -58,7 +58,9 @@ class WSCloseListener extends Listener
         $jwt = JWT::decode($token, $key, $config->get('server.route.jwt.alg'));
         // 从jwt中获取信息
         $userInfo = $jwt->data;
+        var_dump($userInfo);
         $swoStarServer->getRedis()->hdel($key, $userInfo->uid);
+        info("触发移除" . $fd);
         info("触发移除" . $userInfo->uid);
     }
 }
