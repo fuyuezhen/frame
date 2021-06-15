@@ -12,16 +12,17 @@ class Connections
      * 初始化
      *
      * @param [type] $fd
-     * @param [type] $path
+     * @param [type] $request
      * @return void
      */
-    public static function init($fd, $path)
+    public static function init($fd, $request)
     {
-        self::$connections[$fd] = $path;
+        self::$connections[$fd]['path']    = $request->server['path_info'];
+        self::$connections[$fd]['request'] = $request;
     }
 
     /**
-     * 获取连接所对应的path信息
+     * 获取连接所对应的request信息
      * @param [type] $fd
      * @return void
      */
