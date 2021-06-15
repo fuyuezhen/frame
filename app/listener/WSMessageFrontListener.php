@@ -52,7 +52,9 @@ class WSMessageFrontListener extends Listener
      */
     protected function privateChat(swoStarServer $swoStarServer, SwooleServer $swooleServer, $data, $fd)
     {
-        
+        // 1. 获取私聊用户ID
+        $clientId = $data['clientId'];
+        var_dump($data);
     }
 
     /**
