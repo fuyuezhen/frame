@@ -5,10 +5,10 @@ class Index
 {
     public function index()
     {
-        return file_get_contents(dirname(__DIR__) . "/view/index/index.html");
+        return "index";
     }
     public function test()
     {
-        return file_get_contents(dirname(__DIR__) . "/view/index/test.html");
+        return "index";
     }
 }
