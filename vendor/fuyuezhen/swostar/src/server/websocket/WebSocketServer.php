@@ -148,8 +148,10 @@ class WebSocketServer extends HttpServer
      */
     public function sendAll($msg)
     {
+        var_dump($this->swooleServer->connections);
         foreach ($this->swooleServer->connections as $fd) {
             if ($this->swooleServer->exists($fd)) {
+                var_dump($fd);
                 $this->swooleServer->push($fd, $msg);
             }
         }
