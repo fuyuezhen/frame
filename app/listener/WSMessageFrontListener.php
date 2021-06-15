@@ -98,7 +98,6 @@ class WSMessageFrontListener extends Listener
         // 接收之后可能有其他的业务
         // ....
         // 想所有连接方发送信息
-        var_dump($data);
         $swoStarServer->sendAll($data['msg']);
     }
 
