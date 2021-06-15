@@ -71,7 +71,7 @@ class WebSocketServer extends HttpServer
      */
     public function onHandShake(Request $swooleRequest, Response $swooleResponse)
     {
-        info("onHandShake".count($this->swooleServer->connections));
+        info("onHandShake：".count($this->swooleServer->connections));
         // 触发握手处理的事件，处理token，传入对应的参数，用户请求信息和响应信息都传入。
         $this->app->make('event')->trigger('ws.hand', [$this, $swooleRequest, $swooleResponse]);
 
@@ -87,7 +87,7 @@ class WebSocketServer extends HttpServer
      * @return void
      */
     public function onOpen(SwooleServer $server, $request) {
-        info("onOpen".count($this->swooleServer->connections));
+        info("onOpen：".count($this->swooleServer->connections));
         $this->controller("open", $request->server['path_info'], [$server, $request]);
         
         Connections::init($request->fd, $request);
@@ -155,7 +155,6 @@ class WebSocketServer extends HttpServer
         foreach ($this->swooleServer->connections as $fd) {
             // 需要先判断是否是正确的websocket连接，否则有可能会push失败
             if ($this->swooleServer->isEstablished($fd)) {
-                var_dump($fd);
                 $this->swooleServer->push($fd, $msg);
             }
         }
