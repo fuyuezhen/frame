@@ -37,7 +37,8 @@ class WSMessageFrontListener extends Listener
          *  "target":"发送的目标"
          *  }
          */
-        $this->{$data['method']}($swoStarServer, $swooleServer, $frame->data, $frame->fd);
+        $data = json_decode($frame->data, true);
+        $this->{$data['method']}($swoStarServer, $swooleServer, $data, $frame->fd);
     }
 
     /**
