@@ -2,6 +2,8 @@
 namespace swostar\server;
 
 use Swoole\Server as SwooleServer;
+use Swoole\Coroutine\Http\Client;
+
 use Redis;
 
 /**
@@ -422,5 +424,25 @@ abstract class Server
     public function getRedis()
     {
         return $this->redis;
+    }
+
+    /**
+     * 指定给某一个连接的服务器发送信息
+     *
+     * @param [type] $ip
+     * @param [type] $port
+     * @param [type] $data
+     * @param [type] $header
+     * @return void
+     */
+    public function send($ip, $port, $data, $header = null)
+    {
+        $cli = new Client($ip, $port);
+
+        empty($header)?:$cli->setHeaders($header);
+
+        if ($cli->upgrade('/')) {
+            $cli->push(\json_encode($data));
+        }
     }
 }

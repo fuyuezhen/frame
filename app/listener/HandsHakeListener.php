@@ -69,9 +69,9 @@ class HandsHakeListener extends Listener
             // 然后绑定路由的关系
             $url = $userInfo->service_url;
             $server->getRedis()->hset($key, $userInfo->uid, \json_encode([
-                'fd'   => $fd,
-                'name' => $userInfo->name,
-                'serverUrl' => $url
+                'fd'          => $fd,
+                'name'        => $userInfo->name,
+                'service_url' => $url
             ]));
             return true;
         } catch (\Exception $e) {

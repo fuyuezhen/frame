@@ -52,9 +52,33 @@ class WSMessageFrontListener extends Listener
      */
     protected function privateChat(swoStarServer $swoStarServer, SwooleServer $swooleServer, $data, $fd)
     {
-        // 1. 获取私聊用户ID
-        $clientId = $data['clientId'];
-        var_dump($data);
+        // 1. 获取私聊用户ID (不是fd)
+        $clientId = $data['clientId'];         
+        // 'data' => [
+        //     'fd'          => $fd,
+        //     'name'        => "client" . $time . $sid, // 用户名
+        //     'service_url' => $url,
+        // ],
+        // 2. 根据用户uid获取对应的服务器信息
+        $clientIMServerInfoJson = $swoStarServer->getRedis()->hGet($this->app->make('config')->get('server.route.jwt.key'), $clientId);
+        $clientIMServerInfo     = json_decode($clientIMServerInfoJson, true);
+
+        // 3. 指定发送
+        $clientIMServerUrl = explode(":", $clientIMServerInfo['service_url']);
+        $clientFd          = $clientIMServerInfo['fd'];
+
+        // 获取客户端的token
+        $request = Connections::get($fd)['request'];
+        $token   = $request->header('sec-websocket-protocol');
+
+        // 发送
+        $swoStarServer->send($clientIMServerUrl[0], $clientIMServerUrl[1], [
+            'method' => 'forwarding',
+            'msg'    => $data['msg'],
+            'fd'     => $clientFd,
+        ], [
+            'sec-websocket-protocol' =>  $token
+        ]);
     }
 
     /**
@@ -104,4 +128,17 @@ class WSMessageFrontListener extends Listener
         $swoStarServer->sendAll($data['msg']);
     }
 
+    /**
+     * 转发信息给对应的客户端
+     *
+     * @param swoStarServer $swoStarServer
+     * @param SwooleServer $swooleServer
+     * @param [type] $data
+     * @param [type] $fd
+     * @return void
+     */
+    protected function forwarding(swoStarServer $swoStarServer, SwooleServer $swooleServer, $data, $fd)
+    {
+        $swooleServer->push($data['fd'], json_encode(['msg' => $data['msg']]));
+    }
 }

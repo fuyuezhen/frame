@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef15d1d7d5b0c0788eea813af5d13db2",
+    "content-hash": "ef4a4f859a162bd77d0f253e72f0bb4f",
     "packages": [
         {
             "name": "firebase/php-jwt",
@@ -62,16 +62,16 @@
         },
         {
             "name": "fuyuezhen/swostar",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fuyuezhen/swostar.git",
-                "reference": "b89eb1357077cd1941c6a463deab4188d1c1ff2d"
+                "reference": "490f8f9eb4ea4d195288919e57398a253ef257de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fuyuezhen/swostar/zipball/b89eb1357077cd1941c6a463deab4188d1c1ff2d",
-                "reference": "b89eb1357077cd1941c6a463deab4188d1c1ff2d",
+                "url": "https://api.github.com/repos/fuyuezhen/swostar/zipball/490f8f9eb4ea4d195288919e57398a253ef257de",
+                "reference": "490f8f9eb4ea4d195288919e57398a253ef257de",
                 "shasum": ""
             },
             "type": "library",
@@ -95,9 +95,9 @@
             ],
             "support": {
                 "issues": "https://github.com/fuyuezhen/swostar/issues",
-                "source": "https://github.com/fuyuezhen/swostar/tree/v1.2.1"
+                "source": "https://github.com/fuyuezhen/swostar/tree/v1.2.2"
             },
-            "time": "2021-06-15T06:05:37+00:00"
+            "time": "2021-06-15T07:48:51+00:00"
         }
     ],
     "packages-dev": [],
