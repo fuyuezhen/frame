@@ -22,9 +22,9 @@ class WSCloseListener extends Listener
     /**
      * 事件处理程序的方法
      *
-     * @param swoStarServer $server
-     * @param Request $request
-     * @param Response $response
+     * @param swoStarServer $swoStarServer
+     * @param SwooleServer $swooleServer
+     * @param [type] $fd
      * @return void
      */
     public function handler(swoStarServer $swoStarServer = null, SwooleServer $swooleServer = null, $fd = null)

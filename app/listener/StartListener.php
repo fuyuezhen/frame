@@ -16,6 +16,12 @@ class StartListener extends Listener
      */
     protected $name = "start";
 
+    /**
+     * 事件处理程序的方法
+     *
+     * @param [type] $swoStarServer
+     * @return void
+     */
     public function handler($swoStarServer = null)
     {
         $config = $this->app->make('config');
