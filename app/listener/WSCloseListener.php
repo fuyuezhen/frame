@@ -29,6 +29,7 @@ class WSCloseListener extends Listener
      */
     public function handler(swoStarServer $swoStarServer = null, SwooleServer $swooleServer = null, $fd = null)
     {
+        info("注销用户的登录_" . $fd);
         // 注销用户的登录
         if ($this->app->make('config')->get('server.ws.is_handshake')) {
             $this->cancel($swoStarServer, $swooleServer, $fd);
