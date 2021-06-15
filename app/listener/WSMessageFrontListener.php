@@ -68,7 +68,8 @@ class WSMessageFrontListener extends Listener
         $clientFd          = $clientIMServerInfo['fd'];
 
         // 生成token
-        $token = $this->getJwtToken(0, $clientIMServerInfo['service_url']);
+        // 因为这个是转发消息客户端，转发完信息后会自动断开连接，如果直接使用当前主客户端的token，那么在断开连接的时候会清楚redis的记录，这个是不行的
+        $token = $this->getJwtToken(0, $clientIMServerInfo['service_url']); 
 
         // 发送
         $swoStarServer->send($clientIMServerUrl[0], $clientIMServerUrl[1], [
