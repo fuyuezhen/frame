@@ -67,9 +67,8 @@ class WSMessageFrontListener extends Listener
         $clientIMServerUrl = explode(":", $clientIMServerInfo['service_url']);
         $clientFd          = $clientIMServerInfo['fd'];
 
-        // 获取客户端的token
-        $request = Connections::get($fd)['request'];
-        $token   = $request->header['sec-websocket-protocol'];
+        // 生成token
+        $token = $this->getJwtToken(0, $clientIMServerInfo['service_url']);
 
         // 发送
         $swoStarServer->send($clientIMServerUrl[0], $clientIMServerUrl[1], [
@@ -80,6 +79,41 @@ class WSMessageFrontListener extends Listener
             'sec-websocket-protocol' =>  $token
         ]);
     }
+
+    /**
+     * 获取Token
+     *
+     * @param [type] $uid 用户ID
+     * @param [type] $url 连接的地址
+     * @return void
+     */
+    protected function getJwtToken($uid, $url)
+    {
+        // iss：jwt签发者
+        // aud：接受jwt的一方
+        // sub：jwt所面向的用户
+        // iat：签发时间
+        // nbf：生效时间
+        // exp：jwt的过期时间
+        // jti：jwt的唯一身份标识，主要用来作为一次性token，从而回避重放攻击
+
+        $key   = "swocloud";
+        $time  = time();
+        $token = [
+            'iss' => "http://192.168.218.30", // 可选参数
+            'aud' => "http://192.168.218.30", // 可选参数
+            'iat' => $time, // 签发时间
+            'nbf' => $time, // 生效时间
+            'exp' => $time + 7200, // 过期时间
+            'data' => [
+                'uid'         => $uid,
+                'name'        => "client_" . $time . "_" . $uid, // 用户名
+                'service_url' => $url,
+            ],
+        ];
+        return \Firebase\JWT\JWT::encode($token, $key);
+    }
+
 
     /**
      * 广播：对所有服务器进行消息发送
