@@ -38,7 +38,7 @@ class WSMessageFrontListener extends Listener
          *  }
          */
         $data = json_decode($frame->data, true);
-        $this->{$data['method']}($swoStarServer, $swooleServer, $data['data'], $frame->fd);
+        $this->{$data['method']}($swoStarServer, $swooleServer, $data, $frame->fd);
     }
 
     /**
