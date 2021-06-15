@@ -105,6 +105,7 @@ class WebSocketServer extends HttpServer
         // 消息回复事件
         // $this->app->make('event')->trigger('ws.message.front', [$this, $server, $frame]);
         $path = Connections::get($frame->fd)['path'];
+        var_dump($path);
         $this->controller("message", (!($path=="/") ?: "/index"), [$server, $frame]);
     }
     
