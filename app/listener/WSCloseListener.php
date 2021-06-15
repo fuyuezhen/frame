@@ -47,6 +47,8 @@ class WSCloseListener extends Listener
     {
         $request = Connections::get($fd);
         $token   = $request->header['sec-websocket-protocol'];
+        var_dump($request);
+        var_dump($token);
         $config  = $this->app->make('config');
         $key     = $config->get("server.route.jwt.key");
         // 对jwt的token进行解析，返回jwt对象
