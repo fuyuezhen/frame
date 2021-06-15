@@ -37,12 +37,12 @@ class WSCloseListener extends Listener
     /**
      * 注销用户的登录
      *
-     * @param WebSocketServer $swoStarServer
+     * @param swoStarServer $swoStarServer
      * @param SwooleServer $swooleServer
      * @param [type] $fd
      * @return void
      */
-    protected function cancel(WebSocketServer $swoStarServer = null, SwooleServer $swooleServer = null, $fd = null)
+    protected function cancel(swoStarServer $swoStarServer = null, SwooleServer $swooleServer = null, $fd = null)
     {
         $request = Connections::get($fd);
         var_dump($request);
