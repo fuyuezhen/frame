@@ -98,6 +98,9 @@ class WebSocketServer extends HttpServer
      * @return void
      */
     public function onMessage(SwooleServer $server, $frame) {
+        // 消息回复事件
+        $this->app->make('event')->trigger('ws.message.front', [$this, $server, $frame]);
+
         $this->controller("message", (Connections::get($frame->fd)['path']), [$server, $frame]);
     }
     
@@ -137,4 +140,18 @@ class WebSocketServer extends HttpServer
         app("route")->setFlag('web_socket')->setMethod($method)->match($path, $param);
     }
 
+    /**
+     * 向所有连接方发送信息
+     *
+     * @param [type] $msg
+     * @return void
+     */
+    public function sendAll($msg)
+    {
+        foreach ($this->swooleServer->connections as $fd) {
+            if ($this->swooleServer->exists($fd)) {
+                $this->swooleServer->push($fd, $msg);
+            }
+        }
+    }
 }
