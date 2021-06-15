@@ -68,6 +68,7 @@ class HandsHakeListener extends Listener
             $userInfo = $jwt->data;
             // 然后绑定路由的关系
             $url = $userInfo->service_url;
+            info("登陆成功【{$userInfo->uid}】");
             $server->getRedis()->hset($key, $userInfo->uid, \json_encode([
                 'fd'          => $fd,
                 'name'        => $userInfo->name,
