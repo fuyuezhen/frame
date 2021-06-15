@@ -33,7 +33,7 @@ class HandsHakeListener extends Listener
         // 权限校验
         // 没有携带token直接结束
         $token = $request->header['sec-websocket-protocol'];
-        // info("进入 handler");
+        info($token);
         if (empty($token) || (!$this->check($server, $token, $request->fd))) {
             $response->end();
             return false;
