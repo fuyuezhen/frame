@@ -3,6 +3,7 @@ namespace app\listener;
 
 use Firebase\JWT\JWT;
 use swostar\event\Listener;
+use swostar\server\websocket\Connections;
 use swostar\server\websocket\WebSocketServer as swoStarServer;
 use Swoole\WebSocket\Server as SwooleServer;
 
