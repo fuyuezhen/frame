@@ -46,6 +46,18 @@ class WSCloseListener extends Listener
     protected function cancel(swoStarServer $swoStarServer = null, SwooleServer $swooleServer = null, $fd = null)
     {
         $request = Connections::get($fd);
-        var_dump($request);
+        $token   = $request->header['sec-websocket-protocol'];
+        $config  = $this->app->make('config');
+        $key     = $config->get("server.route.jwt.key");
+        // 对jwt的token进行解析，返回jwt对象
+        // 'data' => [
+        //     'uid'  => $uid,
+        //     'name'  => "client" . $time . $sid, // 用户名
+        //     'service_url' => $url,
+        // ],
+        $jwt = JWT::decode($token, $key, $config->get('server.route.jwt.alg'));
+        // 从jwt中获取信息
+        $userInfo = $jwt->data;
+        $swoStarServer->getRedis()->hdel($key, $userInfo->uid);
     }
 }
