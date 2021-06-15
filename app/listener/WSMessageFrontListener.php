@@ -38,7 +38,7 @@ class WSMessageFrontListener extends Listener
          *  }
          */
         $data = json_decode($frame->data, true);
-        $this->{$data['method']}($swoStarServer, $swooleServer, $data, $frame->fd);
+        $this->{$data['method']}($swoStarServer, $swooleServer, $data['data'], $frame->fd);
     }
 
     /**
@@ -97,7 +97,6 @@ class WSMessageFrontListener extends Listener
     {
         // 接收之后可能有其他的业务
         // ....
-        var_dump($data);
         // 想所有连接方发送信息
         $swoStarServer->sendAll($data['msg']);
     }
