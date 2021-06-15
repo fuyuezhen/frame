@@ -68,9 +68,8 @@ class WSMessageFrontListener extends Listener
         $clientFd          = $clientIMServerInfo['fd'];
 
         // 获取客户端的token
-        var_dump(Connections::get($fd));
-        // $request = Connections::get($fd)['request'];
-        // $token   = $request->header('sec-websocket-protocol');
+        $request = Connections::get($fd)['request'];
+        $token   = $request->header['sec-websocket-protocol'];
 
         // 发送
         $swoStarServer->send($clientIMServerUrl[0], $clientIMServerUrl[1], [
@@ -78,7 +77,7 @@ class WSMessageFrontListener extends Listener
             'msg'    => $data['msg'],
             'fd'     => $clientFd,
         ], [
-            // 'sec-websocket-protocol' =>  $token
+            'sec-websocket-protocol' =>  $token
         ]);
     }
 
