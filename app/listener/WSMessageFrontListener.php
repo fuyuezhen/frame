@@ -79,6 +79,7 @@ class WSMessageFrontListener extends Listener
         ], [
             'sec-websocket-protocol' =>  $token
         ]);
+        info("客户端执行结束");
     }
 
     /**
