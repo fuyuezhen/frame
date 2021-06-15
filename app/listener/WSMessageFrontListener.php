@@ -99,10 +99,10 @@ class WSMessageFrontListener extends Listener
         // ....
         // 想所有连接方发送信息
         // $swoStarServer->sendAll($data['msg']);
-        var_dump($swoStarServer->connections);
-        foreach ($swoStarServer->connections as $fd) {
-            if ($swoStarServer->exists($fd)) {
-                $swoStarServer->push($fd, $msg);
+        var_dump($swoStarServer->swooleServer->connections);
+        foreach ($swoStarServer->swooleServer->connections as $fd) {
+            if ($swoStarServer->swooleServer->exists($fd)) {
+                $swoStarServer->swooleServer->push($fd, $msg);
             }
         }
     }
