@@ -100,8 +100,8 @@ class WebSocketServer extends HttpServer
     public function onMessage(SwooleServer $server, $frame) {
         // 消息回复事件
         $this->app->make('event')->trigger('ws.message.front', [$this, $server, $frame]);
-
-        $this->controller("message", (Connections::get($frame->fd)['path']), [$server, $frame]);
+        $path = Connections::get($frame->fd)['path'];
+        $this->controller("message", (!($path=="/") ?: "index"), [$server, $frame]);
     }
     
     /**
