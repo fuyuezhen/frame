@@ -155,9 +155,9 @@ class WebSocketServer extends HttpServer
      */
     public function sendAll($msg)
     {
+        Co::sleep(1);//此处sleep模拟connect比较慢的情况
+        info("sendAll");
         // $connections 遍历所有websocket连接用户的fd，给所有用户推送
-        \Swoole\Coroutine\System::sleep(1);
-        
         foreach ($this->swooleServer->connections as $fd) {
             // 需要先判断是否是正确的websocket连接，否则有可能会push失败
             if ($this->swooleServer->exist($fd)) {
