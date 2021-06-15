@@ -9,7 +9,7 @@ use swostar\WebSocket\Server as SwooleServer;
 /**
  * 开始监听
  */
-class HandsHakeListener extends Listener
+class WSCloseListener extends Listener
 {
     /**
      * 事件名称
