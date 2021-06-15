@@ -152,6 +152,7 @@ class WebSocketServer extends HttpServer
         foreach ($this->swooleServer->connections as $fd) {
             // 需要先判断是否是正确的websocket连接，否则有可能会push失败
             if ($this->swooleServer->isEstablished($fd)) {
+                var_dump($fd);
                 $this->swooleServer->push($fd, $msg);
             }
         }
