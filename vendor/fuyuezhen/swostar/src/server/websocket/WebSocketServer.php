@@ -22,6 +22,8 @@ class WebSocketServer extends HttpServer
         $this->swooleServer = new SwooleServer($this->host, $this->port);
         // $this->swooleServer = new SwooleServer("127.0.0.1", $this->port);
 
+        var_dump(count($this->swooleServer->connections));
+
         info("启动WebSocket监听：" . $this->host . ":" . $this->port);
     }
 
