@@ -158,7 +158,7 @@ class WebSocketServer extends HttpServer
         // $connections 遍历所有websocket连接用户的fd，给所有用户推送
         foreach ($this->swooleServer->connections as $fd) {
             // 需要先判断是否是正确的websocket连接，否则有可能会push失败
-            if ($this->swooleServer->isEstablished($fd)) {
+            if ($this->swooleServer->exist($fd)) {
                 $this->swooleServer->push($fd, $msg);
             }
         }
