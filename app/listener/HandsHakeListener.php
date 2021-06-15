@@ -71,6 +71,7 @@ class HandsHakeListener extends Listener
             $server->getRedis()->hset($key, $userInfo->uid, \json_encode([
                 'fd'   => $fd,
                 'name' => $userInfo->name,
+                'serverUrl' => $url
             ]));
             return true;
         } catch (\Exception $e) {
