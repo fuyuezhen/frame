@@ -44,6 +44,7 @@ class WSCloseListener extends Listener
      */
     protected function cancel(WebSocketServer $swoStarServer = null, SwooleServer $swooleServer = null, $fd = null)
     {
-        
+        $request = Connections::get($fd);
+        var_dump($request);
     }
 }

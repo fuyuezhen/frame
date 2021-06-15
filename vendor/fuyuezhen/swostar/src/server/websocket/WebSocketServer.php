@@ -111,10 +111,17 @@ class WebSocketServer extends HttpServer
     public function onClose($server, int $fd, int $reactorId) {
         info("onClose：" . $fd);
         if (!empty(Connections::get($fd))) {
+
+            info("exists request onClose：" . $fd);
+
             $this->controller("close", (Connections::get($fd)['path']), [$server, $fd, $reactorId]);
+
+            $this->app->make('event')->trigger('ws.close', [$this, $server, $fd]);
+
             Connections::del($fd);
+        } else {
+            info("not exists request onClose：" . $fd);
         }
-        // $this->app->make('event')->trigger('ws.close', [$this, $server, $fd]);
     }
 
     /**
