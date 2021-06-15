@@ -60,7 +60,6 @@ class WSCloseListener extends Listener
         $userInfo = $jwt->data;
         var_dump($userInfo);
         $swoStarServer->getRedis()->hdel($key, $userInfo->uid);
-        info("触发移除" . $fd);
-        info("触发移除" . $userInfo->uid);
+        info("{$fd} 触发移除 " . $userInfo->uid);
     }
 }
