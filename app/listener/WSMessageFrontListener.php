@@ -125,7 +125,7 @@ class WSMessageFrontListener extends Listener
         // 接收之后可能有其他的业务
         // ....
         // 想所有连接方发送信息
-        $swoStarServer->sendAll($data['msg']);
+        $swoStarServer->sendAll(json_encode($data));
     }
 
     /**
