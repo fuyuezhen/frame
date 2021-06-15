@@ -73,15 +73,15 @@ class WSMessageFrontListener extends Listener
          */
         $client = new \Swoole\Coroutine\Http\Client($config->get('server.route.server.host'), $config->get('server.route.server.port'));
         $ret = $client->upgrade("/"); // 升级为 WebSocket 连接。
-        // if ($ret) {
-        //     $data = [
-        //         'method'      => 'routeBroadcast',
-        //         'msg'         => $data['msg'],
-        //         'ip'          => $swoStarServer->getHost(),
-        //         'port'        => $swoStarServer->getPort(),
-        //     ];
-        //     $client->push(json_encode($data));
-        // }
+        if ($ret) {
+            $data = [
+                'method'      => 'routeBroadcast',
+                'msg'         => $data['msg'],
+                'ip'          => $swoStarServer->getHost(),
+                'port'        => $swoStarServer->getPort(),
+            ];
+            $client->push(json_encode($data));
+        }
         $client->close();
     }
     

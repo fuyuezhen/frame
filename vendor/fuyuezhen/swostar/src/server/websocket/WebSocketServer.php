@@ -101,7 +101,7 @@ class WebSocketServer extends HttpServer
      * @return void
      */
     public function onMessage(SwooleServer $server, $frame) {
-        info("onMessage：".count($this->swooleServer->connections));
+        info("onMessage：".count($this->swooleServer->connections) . " " .$frame->data);
         // 消息回复事件
         $this->app->make('event')->trigger('ws.message.front', [$this, $server, $frame]);
         $path = Connections::get($frame->fd)['path'];
