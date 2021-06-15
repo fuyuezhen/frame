@@ -33,7 +33,7 @@ class HandsHakeListener extends Listener
         // 权限校验
         // 没有携带token直接结束
         $token = $request->header['sec-websocket-protocol'];
-        info("进入 handler");
+        // info("进入 handler");
         if (empty($token) || (!$this->check($server, $token, $request->fd))) {
             $response->end();
             return false;
@@ -68,7 +68,7 @@ class HandsHakeListener extends Listener
             $userInfo = $jwt->data;
             // 然后绑定路由的关系
             $url = $userInfo->service_url;
-            info("登陆成功【{$userInfo->uid}】");
+            // info("登陆成功【{$userInfo->uid}】");
             $server->getRedis()->hset($key, $userInfo->uid, \json_encode([
                 'fd'          => $fd,
                 'name'        => $userInfo->name,
