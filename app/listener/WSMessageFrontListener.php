@@ -29,7 +29,7 @@ class WSMessageFrontListener extends Listener
      */
     public function handler(swoStarServer $swoStarServer = null, SwooleServer $swooleServer = null, $frame = null)
     {
-        var_dump($swoStarServer->swooleServer->connections);
+        var_dump(count($swoStarServer->swooleServer->connections));
         /**
          * 对于参数设置
          * {
