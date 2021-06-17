@@ -37,9 +37,7 @@ class WSMessageFrontListener extends Listener
          *  "target":"发送的目标"
          *  }
          */
-        var_dump($frame->data);
         $data = json_decode($frame->data, true);
-        var_dump($data);
         $this->{$data['method']}($swoStarServer, $swooleServer, $data, $frame->fd);
     }
 
@@ -163,6 +161,7 @@ class WSMessageFrontListener extends Listener
             'method' => 'ack',
             'msg_id' => $data['msg_id'],
         ];
+        info("消息确认成功");
         $swooleServer->push($fd, json_encode($dataAck));
         // 接收之后可能有其他的业务
         // ....
