@@ -157,6 +157,11 @@ class WSMessageFrontListener extends Listener
      */
     protected function routeBroadcast(swoStarServer $swoStarServer, SwooleServer $swooleServer, $data, $fd)
     {
+        $dataAck = [
+            'method' => 'ack',
+            'msg_id' => $data['msg_id'],
+        ];
+        $swooleServer->push($fd, json_encode($dataAck));
         // 接收之后可能有其他的业务
         // ....
         // 想所有连接方发送信息
